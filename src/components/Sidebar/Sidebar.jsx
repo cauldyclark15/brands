@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import cx from "classnames";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -16,37 +13,30 @@ import Hidden from "@material-ui/core/Hidden";
 import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
 
-// core components
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-
 import sidebarStyle from "assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx";
+import avatar from "assets/img/faces/marc.jpg";
 
-import avatar from "assets/img/faces/avatar.jpg";
-
-var ps;
-
-// We've created this component so we can have a ref to the wrapper of the links that appears in our sidebar.
-// This was necessary so that we could initialize PerfectScrollbar on the links.
-// There might be something with the Hidden component from material-ui, and we didn't have access to
-// the links, and couldn't initialize the plugin.
 class SidebarWrapper extends React.Component {
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(this.refs.sidebarWrapper, {
+      this.ps = new PerfectScrollbar(this.sidebarWrapper, {
         suppressScrollX: true,
         suppressScrollY: false
       });
     }
   }
+
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
+      this.ps.destroy();
     }
   }
+
   render() {
     const { className, user, headerLinks, links } = this.props;
     return (
-      <div className={className} ref="sidebarWrapper">
+      <div className={className} ref={node => (this.sidebarWrapper = node)}>
         {user}
         {headerLinks}
         {links}
@@ -60,11 +50,6 @@ class Sidebar extends React.Component {
     super(props);
     this.state = {
       openAvatar: false,
-      openComponents: this.activeRoute("/components"),
-      openForms: this.activeRoute("/forms"),
-      openTables: this.activeRoute("/tables"),
-      openMaps: this.activeRoute("/maps"),
-      openPages: this.activeRoute("-page"),
       miniActive: true
     };
     this.activeRoute.bind(this);
@@ -73,11 +58,13 @@ class Sidebar extends React.Component {
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? true : false;
   }
+
   openCollapse(collapse) {
-    var st = {};
+    let st = {};
     st[collapse] = !this.state[collapse];
     this.setState(st);
   }
+
   render() {
     const {
       classes,
@@ -132,7 +119,7 @@ class Sidebar extends React.Component {
       cx({
         [classes.photoRTL]: rtlActive
       });
-    var user = (
+    let user = (
       <div className={userWrapperClass}>
         <div className={photo}>
           <img src={avatar} className={classes.avatarImg} alt="..." />
@@ -145,7 +132,7 @@ class Sidebar extends React.Component {
               onClick={() => this.openCollapse("openAvatar")}
             >
               <ListItemText
-                primary={rtlActive ? "تانيا أندرو" : "Tania Andrew"}
+                primary={"Joselie Castaneda"}
                 secondary={
                   <b
                     className={
@@ -206,11 +193,9 @@ class Sidebar extends React.Component {
                       classes.itemLink + " " + classes.userCollapseLinks
                     }
                   >
-                    <span className={collapseItemMini}>
-                      {rtlActive ? "و" : "S"}
-                    </span>
+                    <span className={collapseItemMini}>S</span>
                     <ListItemText
-                      primary={rtlActive ? "إعدادات" : "Settings"}
+                      primary="Settings"
                       disableTypography={true}
                       className={collapseItemText}
                     />
@@ -222,7 +207,7 @@ class Sidebar extends React.Component {
         </List>
       </div>
     );
-    var links = (
+    let links = (
       <List className={classes.list}>
         {routes.map((prop, key) => {
           if (prop.redirect) {
@@ -400,7 +385,7 @@ class Sidebar extends React.Component {
       cx({
         [classes.whiteAfter]: bgColor === "white"
       });
-    var brand = (
+    let brand = (
       <div className={logoClasses}>
         <a href="https://www.creative-tim.com" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
@@ -428,7 +413,7 @@ class Sidebar extends React.Component {
           navigator.platform.indexOf("Win") > -1
       });
     return (
-      <div ref="mainPanel">
+      <div>
         <Hidden mdUp implementation="css">
           <Drawer
             variant="temporary"
@@ -442,11 +427,10 @@ class Sidebar extends React.Component {
               keepMounted: true // Better open performance on mobile.
             }}
           >
-            {brand}
             <SidebarWrapper
               className={sidebarWrapper}
               user={user}
-              headerLinks={<HeaderLinks rtlActive={rtlActive} />}
+              headerLinks={<HeaderLinks />}
               links={links}
             />
             {image !== undefined ? (
@@ -510,4 +494,4 @@ Sidebar.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default withStyles(sidebarStyle)(Sidebar);
+export default withStyles(sidebarStyle)(withRouter(Sidebar));

@@ -9,7 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 
 import buttonStyle from "assets/jss/material-dashboard-pro-react/components/buttonStyle.jsx";
-function RegularButton({ ...props }) {
+function RegularButton(props) {
   const {
     classes,
     color,
@@ -24,6 +24,7 @@ function RegularButton({ ...props }) {
     justIcon,
     className,
     muiClasses,
+    type,
     ...rest
   } = props;
   const btnClasses = classNames({
@@ -40,7 +41,7 @@ function RegularButton({ ...props }) {
     [className]: className
   });
   return (
-    <Button {...rest} classes={muiClasses} className={btnClasses}>
+    <Button {...rest} classes={muiClasses} className={btnClasses} type={type}>
       {children}
     </Button>
   );

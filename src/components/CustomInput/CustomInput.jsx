@@ -12,7 +12,7 @@ import Input from "@material-ui/core/Input";
 
 import customInputStyle from "assets/jss/material-dashboard-pro-react/components/customInputStyle.jsx";
 
-function CustomInput({ ...props }) {
+function CustomInput(props) {
   const {
     classes,
     formControlProps,
@@ -24,7 +24,8 @@ function CustomInput({ ...props }) {
     white,
     inputRootCustomClasses,
     success,
-    helpText
+    helpText,
+    type
   } = props;
 
   const labelClasses = classNames({
@@ -44,7 +45,7 @@ function CustomInput({ ...props }) {
     [classes.input]: true,
     [classes.whiteInput]: white
   });
-  var formControlClasses;
+  let formControlClasses;
   if (formControlProps !== undefined) {
     formControlClasses = classNames(
       formControlProps.className,
@@ -53,7 +54,7 @@ function CustomInput({ ...props }) {
   } else {
     formControlClasses = classes.formControl;
   }
-  var helpTextClasses = classNames({
+  let helpTextClasses = classNames({
     [classes.labelRootError]: error,
     [classes.labelRootSuccess]: success && !error
   });
@@ -75,6 +76,7 @@ function CustomInput({ ...props }) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
+        type={type}
         id={id}
         {...inputProps}
       />

@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import cx from "classnames";
-
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Hidden from "@material-ui/core/Hidden";
-
-// material-ui icons
 import Menu from "@material-ui/icons/Menu";
 import MoreVert from "@material-ui/icons/MoreVert";
 import ViewList from "@material-ui/icons/ViewList";
 
-// core components
 import HeaderLinks from "./HeaderLinks";
 import Button from "components/CustomButtons/Button.jsx";
 
@@ -21,7 +17,7 @@ import headerStyle from "assets/jss/material-dashboard-pro-react/components/head
 
 function Header({ ...props }) {
   function makeBrand() {
-    var name;
+    let name;
     props.routes.map((prop, key) => {
       if (prop.collapse) {
         prop.views.map((prop, key) => {
@@ -36,7 +32,7 @@ function Header({ ...props }) {
       }
       return null;
     });
-    if(name){
+    if (name) {
       return name;
     } else {
       return "Default Brand Name";
@@ -109,4 +105,4 @@ Header.propTypes = {
   rtlActive: PropTypes.bool
 };
 
-export default withStyles(headerStyle)(Header);
+export default withStyles(headerStyle)(withRouter(Header));
