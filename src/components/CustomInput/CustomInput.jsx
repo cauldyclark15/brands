@@ -25,7 +25,9 @@ function CustomInput(props) {
     inputRootCustomClasses,
     success,
     helpText,
-    type
+    type,
+    autoComplete,
+    onFocus
   } = props;
 
   const labelClasses = classNames({
@@ -78,6 +80,8 @@ function CustomInput(props) {
         }}
         type={type}
         id={id}
+        autoComplete={autoComplete}
+        onFocus={onFocus}
         {...inputProps}
       />
       {helpText !== undefined ? (

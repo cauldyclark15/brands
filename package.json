@@ -2,6 +2,7 @@
   "name": "brands",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://cauldyclark15.github.io/brands",
   "dependencies": {
     "@material-ui/core": "3.1.1",
     "@material-ui/icons": "3.0.1",
@@ -24,7 +25,8 @@
     "react-scripts": "2.0.5",
     "react-swipeable-views": "0.13.0",
     "react-table": "6.8.6",
-    "react-tagsinput": "3.19.0"
+    "react-tagsinput": "3.19.0",
+    "react-test-renderer": "^16.6.0"
   },
   "optionalDependencies": {
     "@babel/core": "7.0.0",
@@ -43,16 +45,12 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "deploy": "npm run build-css && react-scripts build",
+    "create": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build": "npm run deploy",
-    "lint:check": "eslint . --ext=js,jsx;  exit 0",
-    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
-    "node_modules": "rm -rf node_modules/ && rm -rf package-lock.json",
-    "node_modules-w": "rmdir node_modules /s && del package-lock.json",
-    "install:clean": "npm run node_modules && npm install && npm start",
-    "install:clean-w": "npm run node_modules-w && npm install && npm start"
+    "build": "npm run create",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,5 +60,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }

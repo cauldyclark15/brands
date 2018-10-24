@@ -90,7 +90,7 @@ const warningColor = "#ff9800";
 const dangerColor = "#f44336";
 const successColor = "#4caf50";
 const infoColor = "#00acc1";
-const roseColor = "#2980b9";
+const roseColor = "#34495e";
 const grayColor = "#999999";
 
 const primaryBoxShadow = {
@@ -161,7 +161,7 @@ const primaryCardHeader = {
   ...primaryBoxShadow
 };
 const roseCardHeader = {
-  background: "linear-gradient(60deg, #2980b9, #2980b9)",
+  background: "linear-gradient(60deg, #34495e, #34495e)",
   ...roseBoxShadow
 };
 
