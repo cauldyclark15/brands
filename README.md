@@ -1,6 +1,6 @@
 ## Coding exam - Joselie Castaneda
 
-`npm install` - install dependencies
-`npm run start` - to start application
+1. `npm install` - install dependencies
+2. `npm run start` - to start application
 
 Go to `http://localhost:3000`
