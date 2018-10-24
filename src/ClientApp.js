@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createBrowserHistory } from "history";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -44,14 +44,14 @@ class ClientApp extends Component {
 
   render() {
     return (
-      <BrowserRouter history={history}>
-        <AppProvider value={this.state}>
+      <AppProvider value={this.state}>
+        <Router history={history}>
           <Switch>
             <Route path="/" component={Dashboard} exact />
             <Route path="/login" component={Login} />
           </Switch>
-        </AppProvider>
-      </BrowserRouter>
+        </Router>
+      </AppProvider>
     );
   }
 }
