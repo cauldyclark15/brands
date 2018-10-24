@@ -44,14 +44,14 @@ class ClientApp extends Component {
 
   render() {
     return (
-      <AppProvider value={this.state}>
-        <HashRouter history={history}>
+      <HashRouter history={history}>
+        <AppProvider value={this.state}>
           <Switch>
             <Route path="/" component={Dashboard} exact />
             <Route path="/login" component={Login} />
           </Switch>
-        </HashRouter>
-      </AppProvider>
+        </AppProvider>
+      </HashRouter>
     );
   }
 }
