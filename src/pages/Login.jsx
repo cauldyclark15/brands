@@ -30,6 +30,11 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
+    const token = localStorage.getItem("auth-token");
+    if (token && token === "1515") {
+      this.props.history.push("/");
+    }
+
     this.timeOutFunction = setTimeout(
       function() {
         this.setState({ cardAnimaton: "" });
