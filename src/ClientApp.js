@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createBrowserHistory } from "history";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -44,14 +44,14 @@ class ClientApp extends Component {
 
   render() {
     return (
-      <HashRouter history={history}>
+      <BrowserRouter history={history}>
         <AppProvider value={this.state}>
           <Switch>
             <Route path="/" component={Dashboard} exact />
             <Route path="/login" component={Login} />
           </Switch>
         </AppProvider>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
