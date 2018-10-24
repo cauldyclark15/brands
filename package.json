@@ -2,7 +2,7 @@
   "name": "brands",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cauldyclark15.github.io",
+  "homepage": "https://cauldyclark15.github.io/brands",
   "dependencies": {
     "@material-ui/core": "3.1.1",
     "@material-ui/icons": "3.0.1",
