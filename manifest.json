@@ -1,13 +1,7 @@
 {
   "short_name": "Brands",
   "name": "Brands",
-  "icons": [
-    {
-      "src": "favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
+  "icons": { "315": "favicon.ico" },
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
